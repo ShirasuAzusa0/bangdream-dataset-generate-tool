@@ -4,20 +4,53 @@
  完成训练数据集的构建
 """
 import os
-import json
 import re
+import requests
+import json
+from datetime import datetime, UTC
 
 # 角色选择与输出配置
 TARGET_ROLE = "香澄"
 OUTPUT_JSONL_DIR = 'Output_JSONL'
 OUTPUT_FILE = "./Output_JSONL/dataset.jsonl"
+CHARACTER_URL = "https://bestdori.com/api/characters/main.3.json"
+DESCRIPTION_URL = f"https://bestdori.com/api/characters/"
 
 def build_dataset_with_responses(target_role, prompt_template=None):
     output_dir = os.path.join(os.getcwd(), OUTPUT_JSONL_DIR)
     os.makedirs(output_dir, exist_ok=True)
 
+    response = requests.get(CHARACTER_URL)
+    data = response.json()
+    result = {}
+    role_num = 0
+    for key, value in data.items():
+        name = value.get("firstName")
+        if target_role in name:
+            role_num = key
+            break
+    if role_num != 0:
+        dest_url = DESCRIPTION_URL + f"{role_num}.json"
+        detail_data = requests.get(dest_url).json()
+        for key, value in detail_data.get("profile").items():
+            if isinstance(value, list) and len(value) > 3:
+                result[key] = value[3]
+            else:
+                result[key] = value
+
+    birthday = datetime.fromtimestamp(int(result["birthday"]) / 1000, UTC).strftime('%Y-%m-%d')
+    favoriteFood = result["favoriteFood"]
+    hatedFood = result["hatedFood"]
+    height = result["height"]
+    hobby = result["hobby"]
+    selfIntroduction = result["selfIntroduction"]
+    school = result["school"]
+    schoolCls = result["schoolCls"]
+    schoolYear = result["schoolYear"]
+
     if prompt_template is None:
-        prompt_template = f"你是角色{target_role}，现在正在和其他人进行对话，请以{target_role}的口吻进行自然回应。"
+        prompt_template = f"{target_role}是{selfIntroduction}她就读于{school}{schoolYear}{schoolCls}，喜欢的食物是{favoriteFood}，讨厌的食物是{hatedFood}，爱好是{hobby}，身高{height}cm，生日是{birthday}。"\
+            f"现在你是角色{target_role}，现在正在和其他人进行对话，请以{target_role}的口吻进行自然回应。"
 
     dataset = []
 
