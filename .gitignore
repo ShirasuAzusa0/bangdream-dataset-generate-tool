@@ -1,0 +1,13 @@
+/assets
+*.asset
+
+/Downloaded_Stories
+/dialogs
+/replaced_dialogs
+/related_dialogs
+/filtered_dialogs
+*.txt
+
+/Output_JSONL
+*.jsonl
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Downloaded_Stories" />
+      <excludeFolder url="file://$MODULE_DIR$/Output_JSONL" />
+      <excludeFolder url="file://$MODULE_DIR$/assets" />
+      <excludeFolder url="file://$MODULE_DIR$/dialogs" />
+      <excludeFolder url="file://$MODULE_DIR$/filtered_dialogs" />
+      <excludeFolder url="file://$MODULE_DIR$/related_dialogs" />
+      <excludeFolder url="file://$MODULE_DIR$/replaced_dialogs" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
