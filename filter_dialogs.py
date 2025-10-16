@@ -10,12 +10,9 @@ from pathlib import Path
 from openai import OpenAI, OpenAIError
 
 # LLM API 配置
-API_KEY = "707d67f8-f0bb-4d0e-b66c-32624e45b018"
-MODEL_NAME = "deepseek-v3-1-terminus"
-OPENAI_BASE_URL = "https://ark.cn-beijing.volces.com/api/v3"
-#API_KEY = "YOUR_API_KEY"            # 这里放你自己的 LLM API KEY
-#MODEL_NAME = "YOUR_MODEL_NAME"      # 这里放你自己的 LLM 名称
-#OPENAI_BASE_URL = "YOUR_URL"        # 这里放你的大模型地址
+API_KEY = "YOUR_API_KEY"            # 这里放你自己的 LLM API KEY
+MODEL_NAME = "YOUR_MODEL_NAME"      # 这里放你自己的 LLM 名称
+OPENAI_BASE_URL = "YOUR_URL"        # 这里放你的大模型地址
 MAX_WORKERS = 5
 WAIT_SECONDS = 15                   # 余额不足时的等待时间（可自调整）
 
